@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Brian Remavich — rembytes</title>
+  <meta name="description" content="Brian Remavich is a digital marketing consultant and web developer. Technical SEO, marketing automation and front-end code, shipped by one person." />
+  <meta name="theme-color" content="#07080a" />
+  <meta property="og:title" content="rembytes — Brian Remavich" />
+  <meta property="og:description" content="A marketer who ships code. Digital marketing, technical SEO and web development." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rembytes.com/" />
+  <link rel="canonical" href="https://rembytes.com/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2307080a'/%3E%3Cpath d='M9 23V9h8a4.5 4.5 0 0 1 1.6 8.7L23 23h-3.2l-3.9-4.9H12V23z M12 11.6v3.9h5a1.95 1.95 0 0 0 0-3.9z' fill='%23ff4d1c'/%3E%3C/svg%3E" />
+  <script>document.documentElement.classList.add('js');</script>
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__log mono" id="loaderLog"></div>
+    <div class="loader__count"><span id="loaderNum">000</span><i>%</i></div>
+    <div class="loader__bar"><span id="loaderBar"></span></div>
+  </div>
+
+  <!-- PERSISTENT WEBGL LAYER -->
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <span class="cursor__dot"></span>
+    <span class="cursor__ring"><b class="cursor__label mono" id="cursorLabel"></b></span>
+  </div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="#hero" class="nav__logo" data-cursor="link" aria-label="rembytes — back to top">
+      <span class="nav__logo-mark">rem</span><span class="nav__logo-slash">/</span><span class="nav__logo-mark">bytes</span><span class="nav__caret"></span>
+    </a>
+    <nav class="nav__links mono" aria-label="Primary">
+      <a href="#about" data-cursor="link" data-magnetic><span>01</span>About</a>
+      <a href="#experience" data-cursor="link" data-magnetic><span>02</span>Experience</a>
+      <a href="#craft" data-cursor="link" data-magnetic><span>03</span>Craft</a>
+      <a href="#work" data-cursor="link" data-magnetic><span>04</span>Work</a>
+      <a href="#contact" data-cursor="link" data-magnetic><span>05</span>Contact</a>
+    </nav>
+    <div class="nav__tools">
+      <button class="chip mono" id="accentBtn" data-cursor="link" data-magnetic aria-label="Cycle accent colour" title="Cycle accent colour"><i class="chip__dot"></i></button>
+      <button class="chip mono" id="paletteBtn" data-cursor="link" data-magnetic aria-label="Open command palette"><kbd>⌘</kbd><kbd>K</kbd></button>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="menu" id="menu" aria-hidden="true">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#craft">Craft</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- SIDE SECTION INDEX -->
+  <aside class="rail mono" id="rail" aria-hidden="true">
+    <a href="#hero" data-s="hero"><i></i><span>00 Start</span></a>
+    <a href="#about" data-s="about"><i></i><span>01 About</span></a>
+    <a href="#experience" data-s="experience"><i></i><span>02 Experience</span></a>
+    <a href="#craft" data-s="craft"><i></i><span>03 Craft</span></a>
+    <a href="#work" data-s="work"><i></i><span>04 Work</span></a>
+    <a href="#contact" data-s="contact"><i></i><span>05 Contact</span></a>
+  </aside>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero" data-formation="name">
+      <h1 class="sr-only">Brian Remavich — rembytes</h1>
+      <p class="hero__fallback" aria-hidden="true">REM<br />BYTES</p>
+
+      <div class="hero__top mono">
+        <span data-hero-in><i class="live"></i> Available for consulting</span>
+        <span data-hero-in class="hide-sm">Florida, USA · <b id="clock">--:--:--</b></span>
+      </div>
+
+      <div class="hero__bottom">
+        <p class="hero__tag" data-hero-in>
+          A marketer who <em>ships code</em>.<br />
+          <span>Digital marketing · Technical SEO · Web development</span>
+        </p>
+        <div class="hero__meta mono" data-hero-in>
+          <span>Brian Remavich</span>
+          <span>CMO @ Email Agency Inc.</span>
+        </div>
+        <a href="#about" class="scrollcue mono" data-hero-in data-cursor="link">
+          <span class="scrollcue__line"></span>Scroll
+        </a>
+      </div>
+      <p class="hero__hint mono" data-hero-in>Move your mouse. Click the field.</p>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <section class="marquee" aria-label="Skills">
+      <div class="marquee__track" id="marqueeTrack">
+        <div class="marquee__row" data-marquee>
+          <span>HTML5</span><i>✦</i><span class="o">CSS3</span><i>✦</i><span>JavaScript</span><i>✦</i><span class="o">SEO</span><i>✦</i><span>Marketing Automation</span><i>✦</i><span class="o">Analytics</span><i>✦</i><span>Growth</span><i>✦</i><span class="o">Email</span><i>✦</i>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="about section" id="about" data-formation="field">
+      <div class="wrap">
+        <p class="eyebrow mono" data-reveal><span>01</span> About</p>
+
+        <h2 class="about__lead" id="aboutLead">
+          I'm a detail-oriented, tech-savvy motivator who lives where marketing strategy meets the codebase. It's kinda my thing.
+        </h2>
+
+        <div class="about__grid">
+          <div class="portrait" data-tilt data-cursor="drag">
+            <div class="portrait__frame">
+              <div class="portrait__img" id="portrait">
+                <!-- Drop your headshot at /public/brian.jpg and it replaces this placeholder automatically -->
+                <span class="portrait__mono">BR</span>
+              </div>
+              <div class="portrait__scan"></div>
+            </div>
+            <div class="portrait__tag mono"><i class="live"></i> id: brian.remavich</div>
+          </div>
+
+          <div class="facts">
+            <article class="fact" data-reveal data-cursor="hover">
+              <h3 class="mono">Location</h3>
+              <p>New York <span class="arrow">→</span> <em>Florida.</em> Traded the snow for sunshine and never looked back.</p>
+            </article>
+            <article class="fact" data-reveal data-cursor="hover">
+              <h3 class="mono">Off the clock</h3>
+              <p>Building <em>Lego</em> sets, playing adult kickball, and yelling at the TV for my favorite teams.</p>
+            </article>
+            <article class="fact" data-reveal data-cursor="hover">
+              <h3 class="mono">Education</h3>
+              <p><em>Florida Atlantic University</em> — advertising &amp; business management.<br /><em>Indian River State College</em> — computer information technology.</p>
+            </article>
+            <article class="fact fact--stats" data-reveal>
+              <div><b data-count="8">0</b><span>years shipping</span></div>
+              <div><b data-count="3">0</b><span>companies</span></div>
+              <div><b data-count="5">0</b><span>core skills</span></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE (horizontal) ============ -->
+    <section class="exp" id="experience" data-formation="torus">
+      <div class="exp__pin" id="expPin">
+        <div class="exp__head wrap">
+          <p class="eyebrow mono"><span>02</span> Experience</p>
+          <div class="exp__progress mono"><span id="expCount">01</span> / 03<div class="exp__bar"><i id="expBar"></i></div></div>
+        </div>
+
+        <div class="exp__track" id="expTrack">
+          <article class="job">
+            <span class="job__year mono">2023 — Now</span>
+            <h3 class="job__role">Chief Marketing Officer</h3>
+            <p class="job__co">Email Agency Inc.</p>
+            <p class="job__desc">Owning marketing strategy end to end: growth, technical SEO, automation and the data that ties it together.</p>
+            <ul class="tags mono"><li>Strategy</li><li>Technical SEO</li><li>Automation</li></ul>
+            <span class="job__n" aria-hidden="true">01</span>
+          </article>
+
+          <article class="job">
+            <span class="job__year mono">2020 — 2023</span>
+            <h3 class="job__role">Developer</h3>
+            <p class="job__co">Envision Healthcare</p>
+            <p class="job__desc">Built and maintained web experiences at enterprise scale, writing the front-end and wrangling the CMS.</p>
+            <ul class="tags mono"><li>Kentico CMS</li><li>HTML5 / CSS3</li><li>JavaScript</li></ul>
+            <span class="job__n" aria-hidden="true">02</span>
+          </article>
+
+          <article class="job">
+            <span class="job__year mono">2018 — 2019</span>
+            <h3 class="job__role">Head of Marketing</h3>
+            <p class="job__co">Cableorganizer.com</p>
+            <p class="job__desc">Led marketing for an e-commerce brand, from search and email to the storefront experience.</p>
+            <ul class="tags mono"><li>E-commerce</li><li>Magento</li><li>SEO</li></ul>
+            <span class="job__n" aria-hidden="true">03</span>
+          </article>
+
+          <article class="job job--end">
+            <h3 class="job__role">Next:<br /><em>you?</em></h3>
+            <a href="#contact" class="btn btn--ghost" data-cursor="link" data-magnetic><span>Let's talk</span><i>↗</i></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CRAFT ============ -->
+    <section class="craft section" id="craft" data-formation="sphere">
+      <div class="wrap">
+        <p class="eyebrow mono" data-reveal><span>03</span> Professional passions</p>
+        <ul class="rows" id="rows">
+          <li class="row" data-cursor="hover">
+            <span class="row__n mono">01</span>
+            <h3 class="row__t" data-split="chars">Digital Marketing</h3>
+            <p class="row__d">Positioning, funnels, campaigns and the numbers that prove they work.</p>
+            <span class="row__a">↗</span>
+          </li>
+          <li class="row" data-cursor="hover">
+            <span class="row__n mono">02</span>
+            <h3 class="row__t" data-split="chars">Technical SEO</h3>
+            <p class="row__d">Crawlability, speed, structured data and architecture search engines love.</p>
+            <span class="row__a">↗</span>
+          </li>
+          <li class="row" data-cursor="hover">
+            <span class="row__n mono">03</span>
+            <h3 class="row__t" data-split="chars">Web Development</h3>
+            <p class="row__d">HTML5, CSS3 and JavaScript, hand-built with an eye on performance.</p>
+            <span class="row__a">↗</span>
+          </li>
+          <li class="row" data-cursor="hover">
+            <span class="row__n mono">04</span>
+            <h3 class="row__t" data-split="chars">Marketing Automation</h3>
+            <p class="row__d">Systems that nurture, score and convert while you sleep.</p>
+            <span class="row__a">↗</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section class="work section" id="work" data-formation="helix">
+      <div class="wrap">
+        <p class="eyebrow mono" data-reveal><span>04</span> Selected work</p>
+        <h2 class="work__title" data-split="words">Things I've built, grown &amp; fixed.</h2>
+
+        <div class="cards" id="cards">
+          <a href="#contact" class="card" data-tilt data-cursor="label" data-label="Case study" style="--h1:14;--h2:350">
+            <div class="card__viz"><span></span><span></span><span></span></div>
+            <div class="card__body">
+              <span class="mono">Case study 01</span>
+              <h3>Growth engine, rebuilt.</h3>
+              <p>Placeholder: swap in a real project, result and screenshot.</p>
+            </div>
+          </a>
+          <a href="#contact" class="card" data-tilt data-cursor="label" data-label="Case study" style="--h1:200;--h2:260">
+            <div class="card__viz"><span></span><span></span><span></span></div>
+            <div class="card__body">
+              <span class="mono">Case study 02</span>
+              <h3>Search visibility, 10× deeper.</h3>
+              <p>Placeholder: technical SEO audit and the results that followed.</p>
+            </div>
+          </a>
+          <a href="#contact" class="card" data-tilt data-cursor="label" data-label="Case study" style="--h1:48;--h2:12">
+            <div class="card__viz"><span></span><span></span><span></span></div>
+            <div class="card__body">
+              <span class="mono">Case study 03</span>
+              <h3>Lifecycle that runs itself.</h3>
+              <p>Placeholder: marketing automation flows and revenue lift.</p>
+            </div>
+          </a>
+          <a href="#contact" class="card" data-tilt data-cursor="label" data-label="Case study" style="--h1:120;--h2:180">
+            <div class="card__viz"><span></span><span></span><span></span></div>
+            <div class="card__body">
+              <span class="mono">Case study 04</span>
+              <h3>Front-end, hand-built.</h3>
+              <p>Placeholder: a site or tool shipped end to end.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="contact section" id="contact" data-formation="galaxy">
+      <div class="wrap">
+        <p class="eyebrow mono" data-reveal><span>05</span> Contact</p>
+        <h2 class="contact__title" data-split="lines">
+          <span class="line">Let's build</span>
+          <span class="line"><em>something</em> loud.</span>
+        </h2>
+
+        <div class="contact__row">
+          <button class="btn btn--big" id="copyMail" data-copy="info@rembytes.com" data-cursor="link" data-magnetic>
+            <span>info@rembytes.com</span><i>⧉</i>
+          </button>
+          <a class="btn btn--ghost" href="mailto:brian.remavich@gmail.com" data-cursor="link" data-magnetic><span>Or write directly</span><i>↗</i></a>
+        </div>
+
+        <ul class="socials mono">
+          <li><a href="https://www.linkedin.com/in/brianremavich" target="_blank" rel="noopener" data-cursor="link" data-magnetic>LinkedIn ↗</a></li>
+          <li><a href="mailto:brian.remavich@gmail.com" data-cursor="link" data-magnetic>Email ↗</a></li>
+        </ul>
+      </div>
+
+      <footer class="foot">
+        <div class="foot__marquee" aria-hidden="true">
+          <div data-marquee class="foot__row">
+            <span>rembytes</span><i>/</i><span class="o">rembytes</span><i>/</i><span>rembytes</span><i>/</i><span class="o">rembytes</span><i>/</i>
+          </div>
+        </div>
+        <div class="foot__bar mono wrap">
+          <span>© <span id="year">2026</span> Brian Remavich</span>
+          <span>Hand-built · Vite · GSAP · Three.js</span>
+          <button id="toTop" data-cursor="link" data-magnetic>Back to top ↑</button>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <!-- COMMAND PALETTE -->
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command palette" aria-hidden="true">
+    <div class="palette__scrim" data-close></div>
+    <div class="palette__box">
+      <div class="palette__input mono"><span>›</span><input id="paletteInput" type="text" placeholder="Type a command…" autocomplete="off" spellcheck="false" /><kbd>esc</kbd></div>
+      <ul class="palette__list" id="paletteList" role="listbox"></ul>
+      <div class="palette__foot mono"><span>↑↓ navigate</span><span>↵ run</span></div>
+    </div>
+  </div>
+
+  <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
+
+</body>
+</html>
