@@ -335,6 +335,7 @@ export function createScene(canvas, { reduced = false } = {}) {
   let cur = 'chaos';
   let next = 'chaos';
   let pending = null;
+  let alphaScale = 1;
   let morphing = false;
   let tween = null;
 
@@ -379,7 +380,7 @@ export function createScene(canvas, { reduced = false } = {}) {
     loadBuffers();
     uniforms.uMix.value = 0;
     morphing = true;
-    gsap.to(uniforms.uAlpha, { value: defs[name].alpha, duration: 1.6, ease: 'power2.inOut' });
+    gsap.to(uniforms.uAlpha, { value: defs[name].alpha * alphaScale, duration: 1.6, ease: 'power2.inOut' });
     tween = gsap.to(uniforms.uMix, {
       value: 1,
       duration: reduced ? 0.01 : 2.4,
@@ -470,11 +471,12 @@ export function createScene(canvas, { reduced = false } = {}) {
   frame();
 
   return {
-    intro() {
-      start('name'); // chaos → name
+    intro(name = 'name') {
+      start(name); // chaos → formation
       return tween;
     },
     morphTo,
+    setAlphaScale(v) { alphaScale = v; gsap.to(uniforms.uAlpha, { value: defs[next].alpha * v, duration: 0.8 }); },
     setPointer,
     pointerLeave,
     pulse,

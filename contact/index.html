@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Contact — Brian Remavich</title>
+  <meta name="description" content="Get in touch with Brian Remavich about digital marketing, technical SEO, marketing automation or web development." />
+  <meta name="theme-color" content="#07080a" />
+  <meta property="og:title" content="Contact — rembytes" />
+  <meta property="og:description" content="Tell me what you're building. I read every message." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rembytes.com/contact/" />
+  <link rel="canonical" href="https://rembytes.com/contact/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2307080a'/%3E%3Cpath d='M9 23V9h8a4.5 4.5 0 0 1 1.6 8.7L23 23h-3.2l-3.9-4.9H12V23z M12 11.6v3.9h5a1.95 1.95 0 0 0 0-3.9z' fill='%23ff4d1c'/%3E%3C/svg%3E" />
+  <script>document.documentElement.classList.add('js');</script>
+  <script type="module" src="/src/contact.js"></script>
+</head>
+<body class="page-contact">
+
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <span class="cursor__dot"></span>
+    <span class="cursor__ring"><b class="cursor__label mono" id="cursorLabel"></b></span>
+  </div>
+
+  <header class="nav" id="nav">
+    <a href="/" class="nav__logo" data-cursor="link" aria-label="rembytes — home">
+      <span class="nav__logo-mark">rem</span><span class="nav__logo-slash">/</span><span class="nav__logo-mark">bytes</span><span class="nav__caret"></span>
+    </a>
+    <nav class="nav__links mono" aria-label="Primary">
+      <a href="/#about" data-cursor="link" data-magnetic><span>01</span>About</a>
+      <a href="/#experience" data-cursor="link" data-magnetic><span>02</span>Experience</a>
+      <a href="/#craft" data-cursor="link" data-magnetic><span>03</span>Craft</a>
+      <a href="/#work" data-cursor="link" data-magnetic><span>04</span>Work</a>
+      <a href="/contact/" data-cursor="link" data-magnetic aria-current="page" class="is-current"><span>05</span>Contact</a>
+    </nav>
+    <div class="nav__tools">
+      <button class="chip mono" id="accentBtn" data-cursor="link" data-magnetic aria-label="Cycle accent colour" title="Cycle accent colour"><i class="chip__dot"></i></button>
+      <button class="chip mono" id="paletteBtn" data-cursor="link" data-magnetic aria-label="Open command palette"><kbd>⌘</kbd><kbd>K</kbd></button>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" aria-hidden="true">
+    <a href="/#about">About</a>
+    <a href="/#experience">Experience</a>
+    <a href="/#craft">Craft</a>
+    <a href="/#work">Work</a>
+    <a href="/contact/">Contact</a>
+  </div>
+
+  <main id="main">
+    <section class="cpage">
+      <div class="wrap cpage__grid">
+
+        <!-- LEFT: intro -->
+        <div class="cpage__intro">
+          <p class="eyebrow mono" data-in><span>05</span> Contact</p>
+          <h1 class="cpage__title" id="cTitle">
+            <span class="line">Let's <em>talk.</em></span>
+          </h1>
+          <p class="cpage__lede" data-in>
+            Got a project, a problem, or just a question about search, automation or code? Tell me what you're working on and I'll reply from my own inbox.
+          </p>
+
+          <dl class="cpage__meta mono" data-in>
+            <div><dt>Email</dt><dd><button id="copyMail" data-copy="brian@rembytes.com" data-cursor="link" data-magnetic>brian@rembytes.com <i>⧉</i></button></dd></div>
+            <div><dt>Based in</dt><dd>Florida, USA</dd></div>
+            <div><dt>Local time</dt><dd id="clock">--:--:--</dd></div>
+            <div><dt>Elsewhere</dt><dd><a href="https://www.linkedin.com/in/brianremavich" target="_blank" rel="noopener" data-cursor="link">LinkedIn ↗</a></dd></div>
+          </dl>
+        </div>
+
+        <!-- RIGHT: form -->
+        <div class="form-card" id="formCard" data-in>
+          <form id="contactForm" class="form" novalidate>
+            <div class="field">
+              <div class="field__ctl">
+                <input id="f-name" name="name" type="text" maxlength="100" required autocomplete="name" placeholder=" " aria-describedby="e-name" />
+                <label for="f-name">Your name</label>
+                <i class="field__bar"></i>
+              </div>
+              <p class="field__err" id="e-name" aria-live="polite"></p>
+            </div>
+
+            <div class="field">
+              <div class="field__ctl">
+                <input id="f-email" name="email" type="email" maxlength="254" required autocomplete="email" inputmode="email" placeholder=" " aria-describedby="e-email" />
+                <label for="f-email">Email address</label>
+                <i class="field__bar"></i>
+              </div>
+              <p class="field__err" id="e-email" aria-live="polite"></p>
+            </div>
+
+            <div class="field">
+              <div class="field__ctl">
+                <input id="f-company" name="company" type="text" maxlength="100" autocomplete="organization" placeholder=" " />
+                <label for="f-company">Company <span>optional</span></label>
+                <i class="field__bar"></i>
+              </div>
+            </div>
+
+              <fieldset class="topics">
+                <legend class="mono">I'm interested in <span>optional</span></legend>
+                <div class="topics__list">
+                  <label class="topic"><input type="checkbox" name="topics" value="Marketing strategy" /><span data-cursor="link">Marketing strategy</span></label>
+                  <label class="topic"><input type="checkbox" name="topics" value="Technical SEO" /><span data-cursor="link">Technical SEO</span></label>
+                  <label class="topic"><input type="checkbox" name="topics" value="Marketing automation" /><span data-cursor="link">Marketing automation</span></label>
+                  <label class="topic"><input type="checkbox" name="topics" value="Web development" /><span data-cursor="link">Web development</span></label>
+                  <label class="topic"><input type="checkbox" name="topics" value="Something else" /><span data-cursor="link">Something else</span></label>
+                </div>
+              </fieldset>
+
+              <div class="field field--area">
+                <div class="field__ctl">
+                  <textarea id="f-message" name="message" rows="5" maxlength="5000" required placeholder=" " aria-describedby="e-message"></textarea>
+                  <label for="f-message">What are you working on?</label>
+                  <i class="field__bar"></i>
+                  <span class="field__count mono" id="msgCount" aria-hidden="true">0 / 5000</span>
+                </div>
+                <p class="field__err" id="e-message" aria-live="polite"></p>
+              </div>
+
+            <!-- honeypot: real people never see or fill this -->
+            <div class="hp" aria-hidden="true">
+              <label>Website <input type="text" name="website" id="f-website" tabindex="-1" autocomplete="off" /></label>
+            </div>
+
+            <div class="turnstile" id="turnstile-box"></div>
+
+            <div class="form__foot">
+              <button type="submit" class="btn btn--big btn--submit" id="submitBtn" data-cursor="link" data-magnetic>
+                <span class="btn__label">Send message</span><i>↗</i>
+              </button>
+              <p class="form__note mono">Protected by Cloudflare Turnstile. No newsletters, no spam.</p>
+            </div>
+
+            <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+
+          <!-- success state -->
+          <div class="sent" id="sent" hidden>
+            <svg class="sent__check" viewBox="0 0 64 64" aria-hidden="true">
+              <circle cx="32" cy="32" r="28" fill="none" stroke="currentColor" stroke-width="2" />
+              <path d="M19 33l9 9 17-20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <h2 class="sent__title">Message <em>received.</em></h2>
+            <p class="sent__text" id="sentText">Thanks. I'll be in touch soon.</p>
+            <button class="btn btn--ghost" id="sendAnother" data-cursor="link" data-magnetic><span>Send another</span><i>↗</i></button>
+          </div>
+        </div>
+      </div>
+
+      <footer class="foot foot--slim">
+        <div class="foot__bar mono wrap">
+          <span>© <span id="year">2026</span> Brian Remavich</span>
+          <a href="/" data-cursor="link" data-magnetic>← Back home</a>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command palette" aria-hidden="true">
+    <div class="palette__scrim" data-close></div>
+    <div class="palette__box">
+      <div class="palette__input mono"><span>›</span><input id="paletteInput" type="text" placeholder="Type a command…" autocomplete="off" spellcheck="false" /><kbd>esc</kbd></div>
+      <ul class="palette__list" id="paletteList" role="listbox"></ul>
+      <div class="palette__foot mono"><span>↑↓ navigate</span><span>↵ run</span></div>
+    </div>
+  </div>
+
+  <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

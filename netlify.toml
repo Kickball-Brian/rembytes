@@ -5,6 +5,9 @@
 [build.environment]
   NODE_VERSION = "22"
 
+[functions]
+  node_bundler = "esbuild"
+
 # Hashed build assets never change, so cache them for a year.
 [[headers]]
   for = "/assets/*"
