@@ -1,3 +1,6 @@
+# STAGING ONLY. Production runs on our own servers (see deploy/ and the README),
+# so nothing in the app depends on Netlify. This file just tells Netlify how to build it.
+
 [build]
   command = "npm run build"
   publish = "dist"

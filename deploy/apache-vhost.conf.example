@@ -1,0 +1,36 @@
+# Apache 2.4 virtual host: static build + reverse proxy for /api/ to the Node server.
+# Needs: a2enmod proxy proxy_http headers rewrite expires
+<VirtualHost *:443>
+    ServerName rembytes.com
+    DocumentRoot /var/www/rembytes/dist
+
+    # SSLEngine on
+    # SSLCertificateFile    /etc/letsencrypt/live/rembytes.com/fullchain.pem
+    # SSLCertificateKeyFile /etc/letsencrypt/live/rembytes.com/privkey.pem
+
+    <Directory /var/www/rembytes/dist>
+        Options -Indexes +FollowSymLinks
+        AllowOverride None
+        Require all granted
+        DirectoryIndex index.html
+    </Directory>
+
+    # Contact API → Node (set TRUST_PROXY=true in /etc/rembytes.env)
+    ProxyPreserveHost On
+    ProxyPass        /api/ http://127.0.0.1:8787/api/ timeout=20
+    ProxyPassReverse /api/ http://127.0.0.1:8787/api/
+    RequestHeader set X-Forwarded-Proto "https"
+    RequestHeader set X-Real-IP "%{REMOTE_ADDR}s"
+    RequestHeader unset X-Forwarded-For
+    LimitRequestBody 32768
+
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    # Staging only:  Header always set X-Robots-Tag "noindex, nofollow"
+
+    <LocationMatch "^/assets/">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </LocationMatch>
+</VirtualHost>

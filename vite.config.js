@@ -1,13 +1,13 @@
 import { defineConfig, loadEnv } from 'vite';
 import { resolve } from 'node:path';
 
-/** Serves netlify/functions/contact.mjs at /api/contact during `vite` dev, so the form works without the Netlify CLI. */
+/** Serves the contact API at /api/contact during `vite` dev, using the same core as production. */
 function devContactApi() {
   return {
     name: 'dev-contact-api',
     configureServer(server) {
-      const env = loadEnv(server.config.mode, process.cwd(), '');
-      for (const [k, v] of Object.entries(env)) if (process.env[k] === undefined) process.env[k] = v;
+      const loaded = loadEnv(server.config.mode, process.cwd(), '');
+      const env = (key) => process.env[key] ?? loaded[key];
 
       server.middlewares.use('/api/contact', async (req, res) => {
         try {
@@ -21,8 +21,15 @@ function devContactApi() {
             headers,
             body: req.method === 'GET' || req.method === 'HEAD' ? undefined : Buffer.concat(chunks),
           });
-          const mod = await server.ssrLoadModule('/netlify/functions/contact.mjs');
-          const response = await mod.default(request, { ip: req.socket.remoteAddress });
+
+          const { handleContact } = await server.ssrLoadModule('/server/contact-core.mjs');
+          const { createFileStore } = await server.ssrLoadModule('/server/stores.mjs');
+          const response = await handleContact(request, {
+            ip: req.socket.remoteAddress,
+            env,
+            messages: createFileStore(resolve(process.cwd(), '.data/messages')),
+            limits: createFileStore(resolve(process.cwd(), '.data/rate-limits')),
+          });
 
           res.statusCode = response.status;
           response.headers.forEach((v, k) => res.setHeader(k, v));
