@@ -329,7 +329,7 @@ export function initPalette(extra = []) {
     { t: 'Go to About', k: 'nav', run: go('#about') },
     { t: 'Go to Experience', k: 'nav', run: go('#experience') },
     { t: 'Go to Craft', k: 'nav', run: go('#craft') },
-    { t: 'Go to Work', k: 'nav', run: go('#work') },
+    { t: 'Open portfolio', k: 'nav', run: () => (window.location.pathname.startsWith('/portfolio') ? lenis.scrollTo(0, { duration: reduced ? 0 : 1.6 }) : navigate('/portfolio/')) },
     { t: 'Open contact form', k: 'nav', run: () => (window.location.pathname.startsWith('/contact') ? $('#f-name')?.focus() : navigate('/contact/')) },
     ...extra,
     { t: 'Copy email address', k: 'action', run: () => copyText(SITE_EMAIL) },

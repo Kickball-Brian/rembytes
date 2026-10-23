@@ -196,6 +196,17 @@ function initScroll() {
   }
 }
 
+
+function initCardShots() {
+  $$('.card__viz img').forEach((img) => {
+    const box = img.parentElement;
+    const fail = () => img.remove();
+    const ok = () => box.classList.add('has-img');
+    if (img.complete) (img.naturalWidth ? ok() : fail());
+    else { img.addEventListener('load', ok, { once: true }); img.addEventListener('error', fail, { once: true }); }
+  });
+}
+
 function initPortrait() {
   // Drop a headshot at /public/brian.jpg and it replaces the monogram.
   const img = new Image();
@@ -212,6 +223,7 @@ async function boot() {
   const quick = arrivedViaTransition();
   initShared();
   initPortrait();
+  initCardShots();
 
   if (quick) await fontsReady();
   else await runLoader();

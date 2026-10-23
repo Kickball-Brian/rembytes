@@ -22,8 +22,17 @@ npm run serve     # build, then serve site + API from one Node process
 - Headshot: drop `public/brian.jpg` (replaces the BR monogram automatically).
 - Copy lives in `index.html` and `contact/index.html`; particle formations in `src/scene.js`;
   shared behaviour in `src/core.js`; page scripts in `src/main.js` and `src/contact.js`.
-- Placeholders: the four "Case study" cards in Work, the LinkedIn URL.
+- Placeholders: the LinkedIn URL, and the screenshots for any project whose image is missing.
 - ⌘K / Ctrl+K (or `/`) opens the command palette.
+
+## Portfolio
+
+`/portfolio/` lists recent builds as plain HTML (one `<article class="proj">` each), and the home page's Work
+section shows the same four as cards. To add or change a project, edit both files.
+
+- Screenshots live in `public/work/<slug>.webp` (about 1440×900). A project with no image shows a styled placeholder automatically.
+- Live sites get a "Visit site" link; set it up as an `<a>` like `brit`. Sites that no longer exist use the "Archived" status line instead (see `envisionpac`).
+- Filter chips (All / Kentico / WordPress) read each article's `data-stack`.
 
 ## Contact form
 
