@@ -19,7 +19,7 @@ export const html = document.documentElement;
 export const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 export const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-export const SITE_EMAIL = 'brian@rembytes.com';
+export const SITE_EMAIL = 'info@rembytes.com';
 const NAV_FLAG = 'rb-nav';
 
 /* ───────────── text splitting ───────────── */

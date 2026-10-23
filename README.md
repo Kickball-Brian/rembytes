@@ -39,6 +39,7 @@ section shows the same four as cards. To add or change a project, edit both file
 `/contact/` posts JSON to `/api/contact`. The pipeline: honeypot → minimum fill time → validation →
 Cloudflare Turnstile → per-IP rate limit (5/hour) → save → email via Resend.
 
+- Messages are emailed to `CONTACT_TO` (default **brian@rembytes.com**). The address shown on the site is **info@rembytes.com**.
 - Fails closed: without `TURNSTILE_SECRET` every submission is refused.
 - If email fails the message is still saved and the visitor still sees success.
 - Only a salted hash of the visitor's IP is stored.
