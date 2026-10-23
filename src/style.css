@@ -178,7 +178,7 @@ html.no-webgl .hero__fallback { display: block; }
 .fact p { font-size: 1.15rem; line-height: 1.35; letter-spacing: -0.01em; }
 .fact p em { color: var(--bone); font-size: 1.25em; }
 .fact .arrow { color: var(--accent); }
-.fact:nth-child(3) { grid-column: span 2; }
+.fact--wide { grid-column: span 2; }
 .fact--stats { grid-column: span 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 .fact--stats:hover { transform: none; }
 .fact--stats b { display: block; font-size: clamp(3rem, 6vw, 5.4rem); font-weight: 800; letter-spacing: -0.05em; line-height: 1; font-variation-settings: "wdth" 80; }
@@ -314,7 +314,7 @@ html.no-webgl .hero__fallback { display: block; }
 @media (max-width: 600px) {
   .hide-sm { display: none; }
   .facts { grid-template-columns: 1fr; }
-  .fact:nth-child(3), .fact--stats { grid-column: span 1; }
+  .fact--wide, .fact--stats { grid-column: span 1; }
   .hero__hint { display: none; }
   .btn--big { width: 100%; justify-content: space-between; }
 }
