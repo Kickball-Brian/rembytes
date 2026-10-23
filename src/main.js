@@ -15,7 +15,7 @@ const logLines = [
   'loading fonts ............ <b>ok</b>',
   'allocating particles ..... <b>ok</b>',
   'compiling shaders ........ <b>ok</b>',
-  'hello, world.',
+  'let\'s go!',
 ];
 
 async function runLoader() {
