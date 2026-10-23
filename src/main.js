@@ -118,12 +118,6 @@ function initScroll() {
     gsap.from(row, { clipPath: 'inset(0 100% 0 0)', duration: 1.1, ease: 'power4.out', scrollTrigger: { trigger: row, start: 'top 92%', once: true } });
   });
 
-  /* counters */
-  $$('[data-count]').forEach((el) => {
-    const target = +el.dataset.count;
-    const o = { v: 0 };
-    gsap.to(o, { v: target, duration: 1.8, ease: 'power2.out', onUpdate() { el.textContent = Math.round(o.v); }, scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
-  });
 
   /* marquees: constant drift + scroll-velocity boost + direction flip */
   $$('[data-marquee]').forEach((row, idx) => {
