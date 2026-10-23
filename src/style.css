@@ -179,7 +179,7 @@ html.no-webgl .hero__fallback { display: block; }
 .fact p em { color: var(--bone); font-size: 1.25em; }
 .fact .arrow { color: var(--accent); }
 .fact--wide { grid-column: span 2; }
-.fact--stats { grid-column: span 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.fact--stats { grid-column: span 2; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 .fact--stats:hover { transform: none; }
 .fact--stats b { display: block; font-size: clamp(3rem, 6vw, 5.4rem); font-weight: 800; letter-spacing: -0.05em; line-height: 1; font-variation-settings: "wdth" 80; }
 .fact--stats span { font-family: var(--f-mono); font-size: 0.62rem; text-transform: uppercase; color: var(--dim); }
