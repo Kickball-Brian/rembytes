@@ -31,7 +31,7 @@ npm run serve     # build, then serve site + API from one Node process
 section shows the same four as cards. To add or change a project, edit both files.
 
 - Screenshots live in `public/work/<slug>.webp` (about 1440×900). A project with no image shows a styled placeholder automatically.
-- Live sites get a "Visit site" link; set it up as an `<a>` like `brit`. Sites that no longer exist use the "Archived" status line instead (see `envisionpac`).
+- Live sites get a "Visit site" link; set it up as an `<a>` like `brit`. Sites that no longer exist use the "Archived" status line instead (see git history for the pattern).
 - Filter chips (All / Kentico / WordPress) read each article's `data-stack`.
 
 ## Contact form
