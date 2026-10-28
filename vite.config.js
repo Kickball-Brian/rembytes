@@ -53,6 +53,7 @@ export default defineConfig({
         main: resolve(import.meta.dirname, 'index.html'),
         contact: resolve(import.meta.dirname, 'contact/index.html'),
         portfolio: resolve(import.meta.dirname, 'portfolio/index.html'),
+        'case-studies': resolve(import.meta.dirname, 'case-studies/index.html'),
       },
     },
   },

@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Case Studies — Brian Remavich</title>
+  <meta name="description" content="Case studies from Brian Remavich: technical SEO, email and lifecycle marketing, Kentico development and marketing automation, with the problem, the work and the outcome." />
+  <meta name="theme-color" content="#07080a" />
+  <meta property="og:title" content="Case Studies — rembytes" />
+  <meta property="og:description" content="Stories from the work: the problem, what I did and what happened next." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rembytes.com/case-studies/" />
+  <link rel="canonical" href="https://rembytes.com/case-studies/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2307080a'/%3E%3Cpath d='M9 23V9h8a4.5 4.5 0 0 1 1.6 8.7L23 23h-3.2l-3.9-4.9H12V23z M12 11.6v3.9h5a1.95 1.95 0 0 0 0-3.9z' fill='%23ff4d1c'/%3E%3C/svg%3E" />
+  <script>document.documentElement.classList.add('js');</script>
+  <script type="module" src="/src/case-studies.js"></script>
+</head>
+<body class="page-casestudies">
+
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <span class="cursor__dot"></span>
+    <span class="cursor__ring"><b class="cursor__label mono" id="cursorLabel"></b></span>
+  </div>
+
+  <header class="nav" id="nav">
+    <a href="/" class="nav__logo" data-cursor="link" aria-label="rembytes — home">
+      <span class="nav__logo-mark">rem</span><span class="nav__logo-slash">/</span><span class="nav__logo-mark">bytes</span><span class="nav__caret"></span>
+    </a>
+    <nav class="nav__links mono" aria-label="Primary">
+      <a href="/#about" data-cursor="link" data-magnetic><span>01</span>About</a>
+      <a href="/#experience" data-cursor="link" data-magnetic><span>02</span>Experience</a>
+      <a href="/#craft" data-cursor="link" data-magnetic><span>03</span>Craft</a>
+      <a href="/portfolio/" data-cursor="link" data-magnetic aria-current="page" class="is-current"><span>04</span>Work</a>
+      <a href="/contact/" data-cursor="link" data-magnetic><span>05</span>Contact</a>
+    </nav>
+    <div class="nav__tools">
+      <button class="chip mono" id="accentBtn" data-cursor="link" data-magnetic aria-label="Cycle accent colour" title="Cycle accent colour"><i class="chip__dot"></i></button>
+      <button class="chip mono" id="paletteBtn" data-cursor="link" data-magnetic aria-label="Open command palette"><kbd>⌘</kbd><kbd>K</kbd></button>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" aria-hidden="true">
+    <a href="/#about">About</a>
+    <a href="/#experience">Experience</a>
+    <a href="/#craft">Craft</a>
+    <a href="/portfolio/">Work</a>
+    <a href="/contact/">Contact</a>
+  </div>
+
+  <main id="main">
+    <section class="ppage cspage">
+      <div class="wrap">
+        <p class="eyebrow mono" data-in><span>04</span> Selected work</p>
+        <h1 class="ppage__title" id="pTitle"><span class="line">Case <em>studies.</em></span></h1>
+        <p class="ppage__lede" data-in>
+          Short stories from the roles behind the sites: what the problem was, what I changed, and what happened next.
+        </p>
+
+        <nav class="subnav" aria-label="Work sections" data-in>
+          <a href="/portfolio/" data-cursor="link">Websites</a>
+          <a href="/case-studies/" class="is-active" aria-current="page" data-cursor="link">Case studies</a>
+        </nav>
+
+        <ol class="csjump mono" aria-label="Jump to a case study" data-in><li><a href="#job-postings" data-cursor="link"><span>01</span>Putting open roles on the map</a></li><li><a href="#reputation" data-cursor="link"><span>02</span>Reputation at 260-location scale</a></li><li><a href="#kentico-platform" data-cursor="link"><span>03</span>One modular platform for corporate and clinical sites</a></li><li><a href="#cableorganizer" data-cursor="link"><span>04</span>Two domains, one new email platform</a></li><li><a href="#flexshopper" data-cursor="link"><span>05</span>Rebuilding the email engine around customer behavior</a></li><li><a href="#vitacost" data-cursor="link"><span>06</span>Paid search across four markets, and a programs toolkit</a></li><li><a href="#leadlogic" data-cursor="link"><span>07</span>Wiring campaigns into LeadLogic</a></li></ol>
+
+        <div class="css-list">
+        <article class="cs" id="job-postings">
+          <aside class="cs__meta">
+            <span class="cs__n" aria-hidden="true">01</span>
+            <p class="cs__co mono">Envision Healthcare</p>
+            <p class="cs__role">Digital Marketer (SEO)</p>
+            <p class="cs__when mono">Feb 2020 – May 2021</p>
+            <ul class="tags mono"><li>Structured data</li><li>JobPosting schema</li><li>Technical SEO</li><li>Analytics</li></ul>
+          </aside>
+          <div class="cs__body">
+            <h2 class="cs__title">Putting open roles on the map</h2>
+            <p class="cs__lede">A healthcare employer with a constant stream of openings needed its jobs to be understood by search engines, not just read by candidates.</p>
+            <div class="cs__block">
+              <h3 class="mono">The challenge</h3>
+              <p>Every open role lived on the site as an ordinary page. Search engines had to guess at titles, locations and requirements, which left a steady source of qualified traffic on the table.</p>
+            </div>
+            <div class="cs__block">
+              <h3 class="mono">What I did</h3>
+              <ul class="cs__list"><li>Implemented JobPosting structured data so each opening described itself to search engines in a standard, machine-readable way.</li><li>Paired the rollout with tagging, call tracking and analytics strategy, so the effect on traffic could be measured instead of assumed.</li></ul>
+            </div>
+            <div class="cs__block cs__block--outcome">
+              <h3 class="mono">The outcome</h3>
+              <p>Organic traffic rose 50% after the JobPosting markup went live.</p>
+              <ul class="cs__stats"><li><b>50%</b><span>increase in organic traffic</span></li></ul>
+            </div>
+          </div>
+        </article>
+        <article class="cs" id="reputation">
+          <aside class="cs__meta">
+            <span class="cs__n" aria-hidden="true">02</span>
+            <p class="cs__co mono">Envision Healthcare</p>
+            <p class="cs__role">Digital Marketer (SEO)</p>
+            <p class="cs__when mono">Feb 2020 – May 2021</p>
+            <ul class="tags mono"><li>Reputation.com</li><li>Google Business Profile</li><li>Local SEO</li><li>Automation</li></ul>
+          </aside>
+          <div class="cs__body">
+            <h2 class="cs__title">Reputation at 260-location scale</h2>
+            <p class="cs__lede">Hundreds of rooftops and providers, each needing an accurate listing and a reputation worth finding.</p>
+            <div class="cs__block">
+              <h3 class="mono">The challenge</h3>
+              <p>With more than 260 rooftop and provider locations, listings drift, details go stale and reviews arrive unevenly. At that scale, goodwill does not accumulate on its own.</p>
+            </div>
+            <div class="cs__block">
+              <h3 class="mono">What I did</h3>
+              <ul class="cs__list"><li>Managed business listings for every one of the 260+ locations through Reputation.com.</li><li>Created an automated review request system, so asking for feedback became part of the patient journey instead of an afterthought.</li></ul>
+            </div>
+            <div class="cs__block cs__block--outcome">
+              <h3 class="mono">The outcome</h3>
+              <p>Reputation scores for Google Business Listings tripled.</p>
+              <ul class="cs__stats"><li><b>3×</b><span>Google Business reputation scores</span></li><li><b>260+</b><span>locations managed</span></li></ul>
+            </div>
+          </div>
+        </article>
+        <article class="cs" id="kentico-platform">
+          <aside class="cs__meta">
+            <span class="cs__n" aria-hidden="true">03</span>
+            <p class="cs__co mono">Envision Healthcare</p>
+            <p class="cs__role">Developer</p>
+            <p class="cs__when mono">May 2021 – Dec 2023</p>
+            <ul class="tags mono"><li>Kentico 12 Xperience</li><li>Portal Engine</li><li>AWS EC2</li><li>DNS</li><li>Technical SEO</li></ul>
+          </aside>
+          <div class="cs__body">
+            <h2 class="cs__title">One modular platform for corporate and clinical sites</h2>
+            <p class="cs__lede">Moving a WordPress multisite onto Kentico 12 Xperience, with a template that works like a kit of parts.</p>
+            <div class="cs__block">
+              <h3 class="mono">The challenge</h3>
+              <p>Corporate and clinical sites each needed to be created, updated and kept healthy, in step with Marketing Communications, and a WordPress multisite had to move to a new platform.</p>
+            </div>
+            <div class="cs__block">
+              <h3 class="mono">What I did</h3>
+              <ul class="cs__list"><li>Built a modular Portal Engine template using Custom Site Settings, Page Types, Page Templates, Custom Tables and Repeaters.</li><li>Created corporate and clinical sites on Kentico Portal Engine and shipped updates and features alongside Marketing Communications.</li><li>Managed the AWS EC2 instance and DNS records behind the sites.</li><li>Ran comprehensive technical SEO audits, resolved on-site errors and expanded the quality of the corporate backlink infrastructure.</li><li>Trained content writers on SEO best practices every month.</li></ul>
+            </div>
+            <div class="cs__block cs__block--outcome">
+              <h3 class="mono">The outcome</h3>
+              <p>A reusable foundation that let new sites and features be built from shared parts, with SEO knowledge spread across the writing team.</p>
+            </div>
+          </div>
+        </article>
+        <article class="cs" id="cableorganizer">
+          <aside class="cs__meta">
+            <span class="cs__n" aria-hidden="true">04</span>
+            <p class="cs__co mono">Cableorganizer.com</p>
+            <p class="cs__role">Marketing Manager</p>
+            <p class="cs__when mono">Sep 2018 – Dec 2019</p>
+            <ul class="tags mono"><li>Oracle ESP</li><li>Deliverability</li><li>Lifecycle marketing</li><li>Product recommendations</li></ul>
+          </aside>
+          <div class="cs__body">
+            <h2 class="cs__title">Two domains, one new email platform</h2>
+            <p class="cs__lede">Moving an e-commerce brand to a new ESP without losing deliverability, then using the data to grow every order.</p>
+            <div class="cs__block">
+              <h3 class="mono">The challenge</h3>
+              <p>Two domains had to move to a new Oracle ESP, and for an e-commerce brand, email reaching the inbox is not optional.</p>
+            </div>
+            <div class="cs__block">
+              <h3 class="mono">What I did</h3>
+              <ul class="cs__list"><li>Led the migration and deployment of both domains to the new Oracle ESP.</li><li>As channel owner, kept emails optimized and free of deliverability issues, and audited campaign workflows, improving them where needed.</li><li>Implemented data-driven workflows across the customer lifecycle and introduced product recommendations on site and in email.</li><li>Managed promotions, marketing calendars and promotional banner and content changes.</li></ul>
+            </div>
+            <div class="cs__block cs__block--outcome">
+              <h3 class="mono">The outcome</h3>
+              <p>Conversion rates and cart sizes increased as lifecycle workflows and recommendations came online.</p>
+              <ul class="cs__stats"><li><b>2</b><span>domains migrated to a new ESP</span></li></ul>
+            </div>
+          </div>
+        </article>
+        <article class="cs" id="flexshopper">
+          <aside class="cs__meta">
+            <span class="cs__n" aria-hidden="true">05</span>
+            <p class="cs__co mono">Flexshopper</p>
+            <p class="cs__role">Email Marketing Specialist</p>
+            <p class="cs__when mono">Oct 2015 – Aug 2018</p>
+            <ul class="tags mono"><li>Bronto</li><li>Automation</li><li>Personalization</li><li>A/B testing</li><li>Segmentation</li></ul>
+          </aside>
+          <div class="cs__body">
+            <h2 class="cs__title">Rebuilding the email engine around customer behavior</h2>
+            <p class="cs__lede">A new ESP, smarter segmentation and a testing habit that never switched off.</p>
+            <div class="cs__block">
+              <h3 class="mono">The challenge</h3>
+              <p>A growing retailer needed email that responded to what customers actually did on the site, not just a calendar of blasts.</p>
+            </div>
+            <div class="cs__block">
+              <h3 class="mono">What I did</h3>
+              <ul class="cs__list"><li>Managed the migration and deployment of a new ESP, Bronto.</li><li>Created automation and personalization workflows driven by on-site activity and purchase history.</li><li>Worked with developers to add customer fields for sharper segmentation, and represented marketing in developer sprint releases.</li><li>Ran A/B tests continually, kept templates responsive on every device and orchestrated promotions from concept to implementation.</li><li>Maintained SEO-optimized site content, slides, banners and landing pages.</li></ul>
+            </div>
+            <div class="cs__block cs__block--outcome">
+              <h3 class="mono">The outcome</h3>
+              <p>A behavior-driven, continuously tested email program on a modern platform, built in close step with engineering.</p>
+            </div>
+          </div>
+        </article>
+        <article class="cs" id="vitacost">
+          <aside class="cs__meta">
+            <span class="cs__n" aria-hidden="true">06</span>
+            <p class="cs__co mono">Vitacost.com</p>
+            <p class="cs__role">Marketing Specialist</p>
+            <p class="cs__when mono">Apr 2013 – Apr 2015</p>
+            <ul class="tags mono"><li>Google AdWords</li><li>Baidu</li><li>Criteo</li><li>SEO</li><li>Amazon Merchant</li></ul>
+          </aside>
+          <div class="cs__body">
+            <h2 class="cs__title">Paid search across four markets, and a programs toolkit</h2>
+            <p class="cs__lede">Brazil, Canada, China and the US, each on its own channel, plus the loyalty and growth programs around them.</p>
+            <div class="cs__block">
+              <h3 class="mono">The challenge</h3>
+              <p>Each market called for its own channel and its own rhythm, while product pages and merchant listings needed to stay clean and competitive.</p>
+            </div>
+            <div class="cs__block">
+              <h3 class="mono">What I did</h3>
+              <ul class="cs__list"><li>Owned Google AdWords for Brazil and Canada, Baidu for China and Criteo remarketing in the US, with daily bid adjustments and promotional ads across channels.</li><li>Rebuilt and oversaw the Referral Program, implemented and managed the Social Login Program, and ran Set &amp; Save, the auto-ship feature.</li><li>Developed SEO initiatives for product pages, overcoming technical obstacles so pages were not treated as duplicate content.</li><li>Managed the Amazon Merchant account, covering more than 20K products.</li></ul>
+            </div>
+            <div class="cs__block cs__block--outcome">
+              <h3 class="mono">The outcome</h3>
+              <p>Four markets and channels run in parallel, a rebuilt referral program, and a 20K+ product catalog kept in order on Amazon.</p>
+              <ul class="cs__stats"><li><b>20K+</b><span>products on Amazon</span></li><li><b>4</b><span>markets and channels</span></li></ul>
+            </div>
+          </div>
+        </article>
+        <article class="cs" id="leadlogic">
+          <aside class="cs__meta">
+            <span class="cs__n" aria-hidden="true">07</span>
+            <p class="cs__co mono">Email Agency Inc.</p>
+            <p class="cs__role">Developer</p>
+            <p class="cs__when mono">Oct 2023 – Present</p>
+            <ul class="tags mono"><li>WordPress</li><li>Bootstrap</li><li>URL parameters</li><li>SMS</li><li>LeadLogic</li></ul>
+          </aside>
+          <div class="cs__body">
+            <h2 class="cs__title">Wiring campaigns into LeadLogic</h2>
+            <p class="cs__lede">Landing pages, forms and workflow emails that carry campaign source data all the way into the platform.</p>
+            <div class="cs__block">
+              <h3 class="mono">The challenge</h3>
+              <p>Affiliates and campaigns only pay off if each lead can be traced back to where it came from, and the pages have to feel good enough to convert.</p>
+            </div>
+            <div class="cs__block">
+              <h3 class="mono">What I did</h3>
+              <ul class="cs__list"><li>Enabled tracking on landing pages and captured URL parameters for affiliates and campaigns.</li><li>Constructed Bootstrap web forms for integration with the LeadLogic software platform.</li><li>Coded workflow emails for landing page campaigns, with integrated SMS.</li><li>Developed and oversaw WordPress corporate and client websites, and designed visual content for promotional and print materials.</li></ul>
+            </div>
+            <div class="cs__block cs__block--outcome">
+              <h3 class="mono">The outcome</h3>
+              <p>Campaign and affiliate source data captured at the landing page and tied to form submissions in LeadLogic.</p>
+            </div>
+          </div>
+        </article>
+        </div>
+
+        <aside class="pcta">
+          <h2 class="pcta__title" data-split="words">Have a problem like these?</h2>
+          <div class="pcta__row">
+            <a class="btn btn--big" href="/contact/" data-cursor="link" data-magnetic><span>Start a conversation</span><i>↗</i></a>
+            <a class="btn btn--ghost" href="/portfolio/" data-cursor="link" data-magnetic><span>See the websites</span><i>↗</i></a>
+          </div>
+        </aside>
+      </div>
+
+      <footer class="foot foot--slim">
+        <div class="foot__bar mono wrap">
+          <span>© <span id="year">2026</span> Brian Remavich</span>
+          <a href="/contact/" data-cursor="link" data-magnetic>Contact →</a>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command palette" aria-hidden="true">
+    <div class="palette__scrim" data-close></div>
+    <div class="palette__box">
+      <div class="palette__input mono"><span>›</span><input id="paletteInput" type="text" placeholder="Type a command…" autocomplete="off" spellcheck="false" /><kbd>esc</kbd></div>
+      <ul class="palette__list" id="paletteList" role="listbox"></ul>
+      <div class="palette__foot mono"><span>↑↓ navigate</span><span>↵ run</span></div>
+    </div>
+  </div>
+
+  <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
