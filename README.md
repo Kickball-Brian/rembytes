@@ -36,7 +36,7 @@ section shows the same four as cards. To add or change a project, edit both file
 
 ## Case studies
 
-`/case-studies/` holds seven case studies (one `<article class="cs">` each), written from the resume. Every figure on the page
+`/case-studies/` holds five case studies (one `<article class="cs">` each), written from the resume. Every figure on the page
 (50%, 3×, 260+, 2, 20K+, 4) comes from the resume; add real numbers only if they are true and you can back them up.
 Reachable from the Websites/Case studies tabs on the portfolio page, the home page's Work section and the ⌘K palette.
 
