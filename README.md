@@ -22,7 +22,7 @@ npm run serve     # build, then serve site + API from one Node process
 - Headshot: drop `public/brian.jpg` (replaces the BR monogram automatically).
 - Copy lives in `index.html` and `contact/index.html`; particle formations in `src/scene.js`;
   shared behaviour in `src/core.js`; page scripts in `src/main.js` and `src/contact.js`.
-- Placeholders: the LinkedIn URL, and the screenshots for any project whose image is missing.
+- Screenshots for any project whose image is missing show a styled placeholder automatically.
 - ⌘K / Ctrl+K (or `/`) opens the command palette.
 
 ## Portfolio
