@@ -26,18 +26,42 @@ const NAV_FLAG = 'rb-nav';
 export function splitWords(el, { mask = false } = {}) {
   const text = el.textContent.trim().replace(/\s+/g, ' ');
   el.setAttribute('aria-label', text);
+
+  // collect words, remembering the inline element (e.g. <em>) each one came from so its styling survives the split
+  const tokens = [];
+  const walk = (node, wrap) => {
+    node.childNodes.forEach((n) => {
+      if (n.nodeType === 3) {
+        n.textContent.split(/(\s+)/).forEach((part) => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { if (tokens.length) tokens[tokens.length - 1].space = true; }
+          else tokens.push({ word: part, wrap, space: false });
+        });
+      } else if (n.nodeType === 1) walk(n, n);
+    });
+  };
+  walk(el, null);
   el.textContent = '';
-  return text.split(' ').map((word, i, arr) => {
+
+  return tokens.map(({ word, wrap, space }, i, arr) => {
     const outer = document.createElement('span');
     outer.setAttribute('aria-hidden', 'true');
     outer.style.display = 'inline-block';
-    if (mask) { outer.style.overflow = 'hidden'; outer.style.verticalAlign = 'top'; outer.style.paddingBottom = '0.1em'; }
+    if (mask) {
+      // the mask hides the rise-in, but must not shave the glyphs: big headings use tight line-height and negative
+      // letter-spacing, so pad the clip box on every side and pull it back with equal negative margins (layout unchanged)
+      outer.style.overflow = 'hidden';
+      outer.style.verticalAlign = 'top';
+      outer.style.padding = '0.14em 0.12em 0.1em';
+      outer.style.margin = '-0.14em -0.12em -0.1em';
+    }
     const inner = document.createElement('span');
     inner.className = 'w';
-    inner.textContent = word;
+    if (wrap) { const styled = wrap.cloneNode(false); styled.textContent = word; inner.appendChild(styled); }
+    else inner.textContent = word;
     outer.appendChild(inner);
     el.appendChild(outer);
-    if (i < arr.length - 1) el.appendChild(document.createTextNode(' '));
+    if (space && i < arr.length - 1) el.appendChild(document.createTextNode(' '));
     return inner;
   });
 }
