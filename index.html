@@ -123,9 +123,10 @@
           <div class="portrait" data-tilt data-cursor="drag">
             <div class="portrait__frame">
               <div class="portrait__img" id="portrait">
-                <!-- Scroll-scrubbed headshot (public/headshot.mp4); the monogram shows until/unless it loads -->
+                <!-- Cut-out headshot (public/headshot.webp). Particles gather into it as you scroll; the BR monogram shows if JS is off -->
                 <span class="portrait__mono">BR</span>
-                <video class="portrait__video" id="portraitVideo" src="/headshot.mp4" poster="/headshot-poster.jpg" muted playsinline preload="auto" disablepictureinpicture tabindex="-1" aria-label="Animated headshot of Brian Remavich"></video>
+                <img class="portrait__photo" id="portraitPhoto" src="/headshot.webp" alt="Brian Remavich" width="960" height="1200" decoding="async" />
+                <canvas class="portrait__canvas" id="portraitCanvas" aria-hidden="true"></canvas>
               </div>
               <div class="portrait__scan"></div>
             </div>

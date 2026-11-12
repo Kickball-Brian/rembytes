@@ -166,11 +166,12 @@ html.no-webgl .hero__fallback { display: block; }
 .portrait:hover .portrait__img.has-photo { filter: grayscale(0) contrast(1); }
 .portrait__mono { font-size: clamp(5rem, 12vw, 10rem); font-weight: 800; letter-spacing: -0.06em; font-variation-settings: "wdth" 75; color: rgba(236, 235, 228, 0.9); mix-blend-mode: overlay; }
 .portrait__img.has-photo .portrait__mono { display: none; }
-.portrait__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.6s var(--ease); pointer-events: none; }
-.portrait__img.has-video { background: var(--ink-2); }
-.portrait__img.has-video .portrait__video { opacity: 1; }
-.portrait__img.has-video .portrait__mono { display: none; }
-.portrait__img.has-video + .portrait__scan { display: none; }
+.portrait__photo, .portrait__canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.portrait__canvas { display: none; }
+.portrait__img.has-cutout .portrait__canvas { display: block; }
+.portrait__img.has-cutout .portrait__mono { display: none; }
+.portrait__img.has-cutout + .portrait__scan { display: none; }
+.portrait__scan { display: none; }
 .portrait__scan { position: absolute; left: 0; right: 0; height: 30%; top: -30%; background: linear-gradient(to bottom, transparent, rgba(var(--accent-rgb), 0.28), transparent); animation: scan 4.5s var(--ease-io) infinite; pointer-events: none; }
 @keyframes scan { to { top: 100%; } }
 

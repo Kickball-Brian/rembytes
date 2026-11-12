@@ -207,51 +207,128 @@ function initCardShots() {
   });
 }
 
-/** Headshot video, scrubbed by scroll (public/headshot.mp4 is all-intra so seeking is instant). */
-const PORTRAIT_END = 3.0; // seconds of the clip played across the scroll range: wipe-in, name types, brief hold
+/* ───────────── headshot: particles gather into the photo as you scroll ───────────── */
+const clamp01 = (v) => Math.min(1, Math.max(0, v));
+const smooth = (a, b, v) => { const t = clamp01((v - a) / (b - a)); return t * t * (3 - 2 * t); };
+const easeOut = (t) => 1 - (1 - t) ** 3;
 
 function initPortrait() {
   const box = $('#portrait');
-  const video = $('#portraitVideo');
-  if (!box || !video) return;
+  const photo = $('#portraitPhoto');
+  const cv = $('#portraitCanvas');
+  if (!box || !photo || !cv) return;
+  if (reduced) return; // reduced motion: the finished photo is simply there
 
-  const ready = () => {
-    if (box.classList.contains('has-video')) return;
-    box.classList.add('has-video');
-    const end = Math.min(PORTRAIT_END, video.duration || PORTRAIT_END);
+  const ctx = cv.getContext('2d');
+  const ACCENT = [255, 77, 28];
+  const DUR = 0.36;        // each particle's flight time, as a share of the scroll range
+  const FADE_FROM = 0.8;   // the sharp photo crossfades in over the last 20%
+  let W = 0, H = 0, dpr = 1, N = 0;
+  let tx, ty, sx, sy, cr, cg, cb, delay, seed;
+  let img, buf32;
+  let target = 0, current = 0, lastDrawn = -1, inView = false;
 
-    // reduced motion: no scrubbing, just show the finished frame
-    if (reduced) { video.currentTime = end; return; }
+  function build() {
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    W = Math.max(2, Math.round(box.clientWidth * dpr));
+    H = Math.max(2, Math.round(box.clientHeight * dpr));
+    cv.width = W; cv.height = H;
+    img = ctx.createImageData(W, H);
+    buf32 = new Uint32Array(img.data.buffer);
 
-    let target = 0;
-    let current = 0;
-    video.currentTime = 0;
+    // read the photo's pixels at canvas resolution (the photo is 4:5, same as the frame)
+    const off = document.createElement('canvas');
+    off.width = W; off.height = H;
+    const o = off.getContext('2d', { willReadFrequently: true });
+    o.drawImage(photo, 0, 0, W, H);
+    const px = o.getImageData(0, 0, W, H).data;
+
+    N = window.innerWidth < 700 ? 7000 : 14000;
+    tx = new Float32Array(N); ty = new Float32Array(N);
+    sx = new Float32Array(N); sy = new Float32Array(N);
+    cr = new Uint8Array(N); cg = new Uint8Array(N); cb = new Uint8Array(N);
+    delay = new Float32Array(N); seed = new Float32Array(N);
+
+    let n = 0, guard = 0;
+    while (n < N && guard++ < N * 60) {
+      const x = Math.floor(Math.random() * W);
+      const y = Math.floor(Math.random() * H);
+      const k = (y * W + x) * 4;
+      if (px[k + 3] < 200) continue;           // skip the removed background
+      tx[n] = x; ty[n] = y;
+      cr[n] = px[k]; cg[n] = px[k + 1]; cb[n] = px[k + 2];
+      const ang = Math.random() * Math.PI * 2;
+      const dist = (60 + Math.random() * 240) * dpr;
+      sx[n] = Math.cos(ang) * dist;
+      sy[n] = Math.sin(ang) * dist * 0.8 - 40 * dpr;   // drift in from slightly above
+      delay[n] = (y / H) * 0.28 + Math.random() * 0.3;  // top of the head lands first
+      seed[n] = Math.random() * 6.283;
+      n++;
+    }
+    N = n;
+    lastDrawn = -1;
+  }
+
+  function draw(p) {
+    buf32.fill(0);
+    const fade = 1 - smooth(FADE_FROM, 1, p);
+    if (fade > 0) {
+      for (let i = 0; i < N; i++) {
+        const t = clamp01((p - delay[i]) / DUR);
+        const k = easeOut(t);
+        const turb = (1 - k) * 14 * dpr;
+        const x = Math.round(tx[i] + sx[i] * (1 - k) + Math.sin(seed[i] + k * 9) * turb);
+        const y = Math.round(ty[i] + sy[i] * (1 - k) + Math.cos(seed[i] + k * 7) * turb);
+        if (x < 0 || y < 0 || x >= W || y >= H) continue;
+        const m = k * k;                                   // orange dust turns to photo colour on arrival
+        const r = ACCENT[0] + (cr[i] - ACCENT[0]) * m;
+        const g = ACCENT[1] + (cg[i] - ACCENT[1]) * m;
+        const b = ACCENT[2] + (cb[i] - ACCENT[2]) * m;
+        const a = Math.round(255 * fade * (0.18 + 0.82 * k));
+        const px = (a << 24) | (b << 16) | (g << 8) | r;   // little-endian RGBA
+        const s = Math.max(1, Math.round((1.3 + (1 - k) * 1.5) * dpr));
+        for (let yy = 0; yy < s; yy++) {
+          const row = (y + yy) * W;
+          if (y + yy >= H) break;
+          for (let xx = 0; xx < s && x + xx < W; xx++) buf32[row + x + xx] = px;
+        }
+      }
+    }
+    ctx.putImageData(img, 0, 0);
+    photo.style.opacity = smooth(FADE_FROM, 1, p);
+  }
+
+  const start = () => {
+    box.classList.add('has-cutout');
+    photo.style.opacity = 0;
+    build();
 
     ScrollTrigger.create({
       trigger: '.portrait',
       start: 'top 90%',
-      end: 'center 40%',
-      onUpdate: (self) => { target = self.progress * end; },
-      onRefresh: (self) => { target = self.progress * end; },
+      end: 'top 22%',   // finished while the whole portrait is still in view
+      onUpdate: (self) => { target = self.progress; },
+      onRefresh: (self) => { target = self.progress; current = self.progress; },
+      onToggle: (self) => { inView = self.isActive; if (!inView) { current = target; draw(target); } },
     });
 
-    // ease toward the target so the video glides instead of stepping
+    // glide toward the scroll position so the formation flows instead of stepping
     gsap.ticker.add(() => {
-      if (document.hidden) return;
-      current += (target - current) * 0.2;
-      if (Math.abs(current - target) < 0.004) current = target;
-      if (Math.abs(video.currentTime - current) > 0.012) video.currentTime = current;
+      if (!inView || document.hidden) return;
+      current += (target - current) * 0.14;
+      if (Math.abs(target - current) < 0.0005) current = target;
+      if (Math.abs(current - lastDrawn) > 0.0004) { draw(current); lastDrawn = current; }
     });
 
-    // some mobile browsers only decode frames after a first play
-    video.play().then(() => video.pause()).catch(() => {});
+    let rt;
+    window.addEventListener('resize', () => {
+      clearTimeout(rt);
+      rt = setTimeout(() => { build(); draw(current); }, 250);
+    });
   };
 
-  if (video.readyState >= 2) ready();
-  else {
-    video.addEventListener('loadeddata', ready, { once: true });
-    video.load();
-  }
+  if (photo.complete && photo.naturalWidth) start();
+  else photo.addEventListener('load', start, { once: true });
 }
 
 /* ───────────── boot ───────────── */
