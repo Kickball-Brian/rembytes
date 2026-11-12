@@ -118,6 +118,13 @@ function initScroll() {
     gsap.from(row, { clipPath: 'inset(0 100% 0 0)', duration: 1.1, ease: 'power4.out', scrollTrigger: { trigger: row, start: 'top 92%', once: true } });
   });
 
+  /* touch / small screens have no hover: light a row up in orange while it crosses the middle of the screen */
+  gsap.matchMedia().add('(hover: none), (max-width: 1000px)', () => {
+    $$('.row').forEach((row) => {
+      ScrollTrigger.create({ trigger: row, start: 'top 50%', end: 'bottom 50%', toggleClass: { targets: row, className: 'is-active' } });
+    });
+  });
+
 
   /* marquees: constant drift + scroll-velocity boost + direction flip */
   $$('[data-marquee]').forEach((row, idx) => {
