@@ -76,7 +76,7 @@ function initScroll() {
 
   const cta = $('.pcta__title');
   const words = splitWords(cta, { mask: true });
-  gsap.from(words, { yPercent: 110, rotate: 4, duration: 1.1, stagger: 0.06, ease: 'power4.out', scrollTrigger: { trigger: cta, start: 'top 88%', once: true } });
+  gsap.from(words, { yPercent: 145, rotate: 4, duration: 1.1, stagger: 0.06, ease: 'power4.out', scrollTrigger: { trigger: cta, start: 'top 88%', once: true } });
   gsap.from('.pcta__row > *', { y: 30, opacity: 0, duration: 0.9, stagger: 0.1, ease: 'power3.out', scrollTrigger: { trigger: '.pcta__row', start: 'top 92%', once: true } });
 
   const prog = $('#progressBar');
@@ -91,7 +91,7 @@ function playIntro() {
 
   const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
   tl.from('.nav', { yPercent: -120, duration: 1, ease: 'power3.out' })
-    .from(words, { yPercent: 115, rotate: 4, duration: 1.3, stagger: 0.1 }, 0.1)
+    .from(words, { yPercent: 145, rotate: 4, duration: 1.3, stagger: 0.1 }, 0.1)
     .from('[data-in]', { y: 36, opacity: 0, duration: 1, stagger: 0.09 }, 0.25);
 }
 

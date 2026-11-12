@@ -98,12 +98,12 @@ function initScroll() {
   /* big headings: lines / words masked rise */
   $$('[data-split="words"]').forEach((el) => {
     const words = splitWords(el, { mask: true });
-    gsap.from(words, { yPercent: 110, rotate: 4, duration: 1.1, stagger: 0.05, ease: 'power4.out', scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
+    gsap.from(words, { yPercent: 145, rotate: 4, duration: 1.1, stagger: 0.05, ease: 'power4.out', scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
   });
   $$('[data-split="lines"]').forEach((el) => {
     const lines = $$('.line', el);
     lines.forEach((l) => { const s = document.createElement('span'); s.innerHTML = l.innerHTML; l.innerHTML = ''; l.appendChild(s); });
-    gsap.from($$('.line > span', el), { yPercent: 115, rotate: 3, duration: 1.3, stagger: 0.12, ease: 'power4.out', scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
+    gsap.from($$('.line > span', el), { yPercent: 145, rotate: 3, duration: 1.3, stagger: 0.12, ease: 'power4.out', scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
   });
 
   /* generic reveal */

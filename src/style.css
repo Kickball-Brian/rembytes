@@ -258,7 +258,7 @@ html.no-webgl .hero__fallback { display: block; }
 /* ───────── CONTACT ───────── */
 .contact { padding-bottom: 0; }
 .contact__title { font-size: clamp(3rem, 11.5vw, 12rem); font-weight: 800; letter-spacing: -0.06em; line-height: 0.88; font-variation-settings: "wdth" 75; margin-bottom: clamp(2.5rem, 7vh, 5rem); }
-.contact__title .line { display: block; overflow: hidden; padding: 0.14em 0.12em 0.08em; margin: -0.14em -0.12em -0.08em; }
+.contact__title .line { display: block; overflow: hidden; padding: 0.14em 0.12em 0.28em; margin: -0.14em -0.12em -0.28em; }
 .contact__title .line > span { display: inline-block; }
 .contact__title em { color: var(--accent); font-weight: 400; letter-spacing: -0.03em; font-size: 1.08em; }
 .contact__row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }

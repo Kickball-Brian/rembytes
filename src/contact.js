@@ -214,7 +214,7 @@ function playIntro() {
   scene?.intro('galaxy');
   const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
   tl.from('.nav', { yPercent: -120, duration: 1, ease: 'power3.out' })
-    .from(words, { yPercent: 115, rotate: 4, duration: 1.3, stagger: 0.1 }, 0.1)
+    .from(words, { yPercent: 145, rotate: 4, duration: 1.3, stagger: 0.1 }, 0.1)
     .from('[data-in]', { y: 36, opacity: 0, duration: 1, stagger: 0.09 }, 0.25)
     .from('.field, .topics, .form__foot', { y: 24, opacity: 0, duration: 0.9, stagger: 0.07 }, 0.5);
 }

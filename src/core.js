@@ -52,8 +52,9 @@ export function splitWords(el, { mask = false } = {}) {
       // letter-spacing, so pad the clip box on every side and pull it back with equal negative margins (layout unchanged)
       outer.style.overflow = 'hidden';
       outer.style.verticalAlign = 'top';
-      outer.style.padding = '0.14em 0.12em 0.1em';
-      outer.style.margin = '-0.14em -0.12em -0.1em';
+      // (bottom is deepest: descenders, and the italic serif accent words, hang well below the baseline)
+      outer.style.padding = '0.14em 0.12em 0.26em';
+      outer.style.margin = '-0.14em -0.12em -0.26em';
     }
     const inner = document.createElement('span');
     inner.className = 'w';
