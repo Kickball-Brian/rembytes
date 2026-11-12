@@ -61,7 +61,7 @@ function playIntro() {
   tl.to('.loader__count, .loader__log, .loader__bar', { yPercent: -30, opacity: 0, duration: 0.7, ease: 'power3.in' })
     .to(loader, { clipPath: 'inset(0 0 100% 0)', duration: 1.1 }, '-=0.25')
     .add(() => { loader.remove(); finishIntro(); }, '-=0.9')
-    .from('.nav', { yPercent: -120, duration: 1, ease: 'power3.out' }, '-=0.6')
+    .from('.nav > *', { y: -36, opacity: 0, duration: 1, stagger: 0.08, ease: 'power3.out', clearProps: 'transform,opacity' }, '-=0.6')
     .from('[data-hero-in]', { y: 28, opacity: 0, duration: 1.1, stagger: 0.1, ease: 'power3.out' }, '-=0.4');
 }
 
@@ -70,7 +70,7 @@ function playQuickIntro() {
   $('#loader').remove();
   curtainReveal();
   finishIntro();
-  gsap.from('.nav', { yPercent: -120, duration: 1, ease: 'power3.out', delay: 0.3 });
+  gsap.from('.nav > *', { y: -36, opacity: 0, duration: 1, stagger: 0.08, ease: 'power3.out', delay: 0.3, clearProps: 'transform,opacity' });
   gsap.from('[data-hero-in]', { y: 28, opacity: 0, duration: 1.1, stagger: 0.1, ease: 'power3.out', delay: 0.35 });
 }
 
@@ -207,15 +207,51 @@ function initCardShots() {
   });
 }
 
+/** Headshot video, scrubbed by scroll (public/headshot.mp4 is all-intra so seeking is instant). */
+const PORTRAIT_END = 3.0; // seconds of the clip played across the scroll range: wipe-in, name types, brief hold
+
 function initPortrait() {
-  // Drop a headshot at /public/brian.jpg and it replaces the monogram.
-  const img = new Image();
-  img.onload = () => {
-    const box = $('#portrait');
-    box.style.backgroundImage = `url(${img.src})`;
-    box.classList.add('has-photo');
+  const box = $('#portrait');
+  const video = $('#portraitVideo');
+  if (!box || !video) return;
+
+  const ready = () => {
+    if (box.classList.contains('has-video')) return;
+    box.classList.add('has-video');
+    const end = Math.min(PORTRAIT_END, video.duration || PORTRAIT_END);
+
+    // reduced motion: no scrubbing, just show the finished frame
+    if (reduced) { video.currentTime = end; return; }
+
+    let target = 0;
+    let current = 0;
+    video.currentTime = 0;
+
+    ScrollTrigger.create({
+      trigger: '.portrait',
+      start: 'top 90%',
+      end: 'center 40%',
+      onUpdate: (self) => { target = self.progress * end; },
+      onRefresh: (self) => { target = self.progress * end; },
+    });
+
+    // ease toward the target so the video glides instead of stepping
+    gsap.ticker.add(() => {
+      if (document.hidden) return;
+      current += (target - current) * 0.2;
+      if (Math.abs(current - target) < 0.004) current = target;
+      if (Math.abs(video.currentTime - current) > 0.012) video.currentTime = current;
+    });
+
+    // some mobile browsers only decode frames after a first play
+    video.play().then(() => video.pause()).catch(() => {});
   };
-  img.src = '/brian.jpg';
+
+  if (video.readyState >= 2) ready();
+  else {
+    video.addEventListener('loadeddata', ready, { once: true });
+    video.load();
+  }
 }
 
 /* ───────────── boot ───────────── */

@@ -144,7 +144,6 @@ html.no-webgl .hero__fallback { display: block; }
 .scrollcue__line { width: 1px; height: 3.2rem; background: var(--line); position: relative; overflow: hidden; }
 .scrollcue__line::after { content: ""; position: absolute; inset: 0; background: var(--accent); animation: drip 2s var(--ease-io) infinite; }
 @keyframes drip { 0% { transform: translateY(-100%); } 60%, 100% { transform: translateY(100%); } }
-.hero__hint { position: absolute; left: 50%; bottom: 7.2rem; transform: translateX(-50%); color: var(--dim); font-size: 0.6rem; white-space: nowrap; }
 
 /* ───────── MARQUEE ───────── */
 .marquee { position: relative; padding-block: 2.2rem; border-block: 1px solid var(--line); background: rgba(7, 8, 10, 0.55); backdrop-filter: blur(8px); overflow: hidden; }
@@ -167,9 +166,13 @@ html.no-webgl .hero__fallback { display: block; }
 .portrait:hover .portrait__img.has-photo { filter: grayscale(0) contrast(1); }
 .portrait__mono { font-size: clamp(5rem, 12vw, 10rem); font-weight: 800; letter-spacing: -0.06em; font-variation-settings: "wdth" 75; color: rgba(236, 235, 228, 0.9); mix-blend-mode: overlay; }
 .portrait__img.has-photo .portrait__mono { display: none; }
+.portrait__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.6s var(--ease); pointer-events: none; }
+.portrait__img.has-video { background: var(--ink-2); }
+.portrait__img.has-video .portrait__video { opacity: 1; }
+.portrait__img.has-video .portrait__mono { display: none; }
+.portrait__img.has-video + .portrait__scan { display: none; }
 .portrait__scan { position: absolute; left: 0; right: 0; height: 30%; top: -30%; background: linear-gradient(to bottom, transparent, rgba(var(--accent-rgb), 0.28), transparent); animation: scan 4.5s var(--ease-io) infinite; pointer-events: none; }
 @keyframes scan { to { top: 100%; } }
-.portrait__tag { margin-top: 1rem; color: var(--dim); font-size: 0.62rem; }
 
 
 .edu { padding: clamp(1.6rem, 3vw, 2.6rem); border: 1px solid var(--line); border-radius: 6px; background: rgba(13, 15, 18, 0.55); backdrop-filter: blur(10px); transition: border-color 0.4s, transform 0.5s var(--ease), background 0.4s; }
@@ -310,7 +313,6 @@ html.no-webgl .hero__fallback { display: block; }
 }
 @media (max-width: 600px) {
   .hide-sm { display: none; }
-  .hero__hint { display: none; }
   .btn--big { width: 100%; justify-content: space-between; }
 }
 @media (hover: none) {
